@@ -1,10 +1,18 @@
 import React from 'react';
-import NoteItemContents from './NoteItemContents';
+import NoteItems from './NoteItems';
 
-function NoteLists({ }) {
+function NoteLists({ notes, onDelete }) {
     return (
         <div className='notes-list'>
-            <NoteItemContents />
+            {
+                notes.map((note) => (
+                    <NoteItems
+                        key={note.id}
+                        id={note.id}
+                        onDelete={onDelete}
+                        {...note} />
+                ))
+            }
         </div>
     )
 }
