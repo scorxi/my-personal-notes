@@ -17,7 +17,7 @@ function NoteLists({ notes, onDelete, onArchive }) {
                 }
             </div>
         ) : (
-            <p className='notes-list__empty-message'>Tidak Ada Catatan</p>
+            <p className='notes-list__empty-message'>Note is empty</p>
         )
     )
 }

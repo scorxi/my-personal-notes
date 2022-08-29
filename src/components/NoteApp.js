@@ -70,17 +70,17 @@ class NoteApp extends React.Component {
         return (
             <>
                 <div className='note-app__header'>
-                    <h1>Notes</h1>
+                    <h1>Personal Notes</h1>
                     <NoteSearch search={this.state.search} onChange={this.onSearchEventHandler} />
                 </div>
 
                 <div className='note-app__body'>
                     <NoteInput addNotes={this.onAddNoteHandler} />
-                    <h2>Catatan Aktif</h2>
-                    <p className='notes-list__empty-message' hidden>Tidak ada catatan</p>
+                    <h2>Active Notes</h2>
+                    <p className='notes-list__empty-message' hidden></p>
                     <NoteLists notes={activeNotes} onDelete={this.onDeleteHandler} onArchive={this.onArchiveHandler} />
-                    <h2>Arsip</h2>
-                    <p className='notes-list__empty-message' hidden>Tidak ada catatan</p>
+                    <h2>Archived Notes</h2>
+                    <p className='notes-list__empty-message' hidden></p>
                     <NoteLists notes={archivedNotes} onDelete={this.onDeleteHandler} onArchive={this.onArchiveHandler} />
                 </div>
             </>

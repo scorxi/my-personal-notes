@@ -3,7 +3,7 @@ import React from 'react';
 function NoteSearch({ search, onChange }) {
     return (
         <div className='note-search'>
-            <input type='text' placeholder='Cari Catatan' search={search} onChange={onChange} />
+            <input type='text' placeholder='Search Note' search={search} onChange={onChange} />
         </div>
     )
 }

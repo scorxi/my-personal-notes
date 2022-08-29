@@ -50,7 +50,7 @@ const showFormattedDate = (date) => {
     month: "long",
     day: "numeric"
   }
-  return new Date(date).toLocaleDateString("id-ID", options)
+  return new Date(date).toDateString("en-GB", options)
 }
 
 export { getInitialData, showFormattedDate };
