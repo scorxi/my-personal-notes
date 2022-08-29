@@ -38,7 +38,7 @@ class NoteApp extends React.Component {
     }
 
     onArchiveHandler(id) {
-        const newNote = this.props.notes.map((note) => (
+        const newNote = this.state.notes.map((note) => (
             note.id === id ? { ...note, archived: !note.archived } : note
         ))
         this.setState({ notes: newNote });
