@@ -20,15 +20,15 @@ class NoteApp extends React.Component {
 
     componentDidMount() {
         const storedNotes = localStorage.getItem('notes');
-        console.log('storedNotes', storedNotes);
-        if (storedNotes !== null || storedNotes !== '') {
-            console.log('IF');
+        console.log('storedNotes', storedNotes); // 'null'
+        if (storedNotes) {
+            console.log('IF'); // 'IF'
             this.setState({ notes: JSON.parse(storedNotes) });
-            this.componentDidUpdate()
         } else {
-            console.log('else');
-            this.setState({ notes: [] })
-            localStorage.setItem('notes', JSON.stringify(this.state.notes))
+            console.log('else'); // ''
+            this.setState({ notes: [] }, () => {
+                localStorage.setItem('notes', JSON.stringify(this.state.notes));
+            })
         }
     }
 
@@ -75,9 +75,9 @@ class NoteApp extends React.Component {
     }
 
     render() {
-        console.log('Render', this.state.notes);
-        const noteSearched = this.state.notes !== null ? this.state.notes.filter((note) => note.title.toLowerCase().includes(this.state.search.toLowerCase())) : null;
-        console.log('note searched', noteSearched);
+        console.log('Render', this.state.notes); // 'Array(0)' after moount component => 'null'
+        const noteSearched = this.state.notes ? this.state.notes.filter((note) => note.title.toLowerCase().includes(this.state.search.toLowerCase())) : null;
+        console.log('note searched', noteSearched); // 'Array(0)' after moount component => 'null' 
 
         const activeNotes = noteSearched ? noteSearched?.filter((note) => {
             return note.archived === false;
