@@ -29,10 +29,11 @@ class NoteApp extends React.Component {
 
     componentDidMount() {
         const storedNotes = localStorage.getItem('notes');
+        console.log('storedNotes', storedNotes);
         if (storedNotes !== []) {
             this.setState({ notes: JSON.parse(storedNotes) });
         } else {
-            this.setState({ notes: [] })
+            this.setState({ notes: JSON.parse([]) })
         }
     }
 
