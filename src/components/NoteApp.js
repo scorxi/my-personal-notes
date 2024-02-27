@@ -19,6 +19,29 @@ class NoteApp extends React.Component {
         this.onSearchEventHandler = this.onSearchEventHandler.bind(this);
     }
 
+    isStorageExist() {
+        if (typeof (Storage) === 'undefined') {
+            alert("Opps, Your browser doesn't support web storage.")
+            return false
+        }
+        return true;
+    }
+
+    componentDidMount() {
+        const storedNotes = localStorage.getItem('notes');
+        console.log(storedNotes);
+        if (storedNotes !== []) {
+            this.setState({ notes: JSON.parse(storedNotes) });
+        } else {
+            console.log('get Initial Data');
+            this.setState({ notes: [] })
+        }
+    }
+
+    componentDidUpdate() {
+        localStorage.setItem('notes', JSON.stringify(this.state.notes))
+    }
+
     onAddNoteHandler({ title, body }) {
         const currentDate = new Date().toISOString();
         this.setState((prevState) => {
@@ -55,6 +78,7 @@ class NoteApp extends React.Component {
                 search: event.target.value
             }
         })
+        this.props.searchNotes(this.state)
     }
 
     render() {
@@ -87,3 +111,4 @@ class NoteApp extends React.Component {
 }
 
 export default NoteApp;
+
