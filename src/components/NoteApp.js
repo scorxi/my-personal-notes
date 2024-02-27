@@ -24,9 +24,11 @@ class NoteApp extends React.Component {
         if (storedNotes) {
             console.log('IF');
             this.setState({ notes: JSON.parse(storedNotes) });
+            this.componentDidUpdate()
         } else {
             console.log('else');
             this.setState({ notes: [] })
+            localStorage.setItem('notes', JSON.stringify(this.state.notes))
         }
     }
 
