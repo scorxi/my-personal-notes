@@ -1,5 +1,4 @@
 import React from 'react';
-import { getInitialData } from '../utils';
 import NoteInput from './NoteInput';
 import NoteLists from './NoteLists';
 import NoteSearch from './NoteSearch';
@@ -9,7 +8,7 @@ class NoteApp extends React.Component {
         super(props);
 
         this.state = {
-            notes: getInitialData(),
+            notes: [],
             search: '',
         }
 
@@ -19,21 +18,15 @@ class NoteApp extends React.Component {
         this.onSearchEventHandler = this.onSearchEventHandler.bind(this);
     }
 
-    isStorageExist() {
-        if (typeof (Storage) === 'undefined') {
-            alert("Opps, Your browser doesn't support web storage.")
-            return false
-        }
-        return true;
-    }
-
     componentDidMount() {
         const storedNotes = localStorage.getItem('notes');
         console.log('storedNotes', storedNotes);
-        if (storedNotes !== []) {
+        if (storedNotes) {
+            console.log('IF');
             this.setState({ notes: JSON.parse(storedNotes) });
         } else {
-            this.setState({ notes: JSON.parse([]) })
+            console.log('else');
+            this.setState({ notes: [] })
         }
     }
 
