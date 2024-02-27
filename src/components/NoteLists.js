@@ -3,7 +3,7 @@ import NoteItems from './NoteItems';
 
 function NoteLists({ notes, onDelete, onArchive }) {
     return (
-        notes.length > 0 ? (
+        notes ? notes.length > 0 ? (
             <div className='notes-list'>
                 {
                     notes.map((note) => (
@@ -18,6 +18,8 @@ function NoteLists({ notes, onDelete, onArchive }) {
             </div>
         ) : (
             <p className='notes-list__empty-message'>Note is empty</p>
+        ) : (
+            <p></p>
         )
     )
 }
