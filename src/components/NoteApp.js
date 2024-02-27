@@ -19,16 +19,13 @@ class NoteApp extends React.Component {
     }
 
     componentDidMount() {
-        const storedNotes = localStorage.getItem('notes');
-        console.log('storedNotes', storedNotes); // 'null'
+        const STORAGE_KEY = 'notes';
+        const storedNotes = localStorage.getItem(STORAGE_KEY);
+        console.log('storedNotes', storedNotes)
         if (storedNotes) {
-            console.log('IF'); // 'IF'
-            this.setState({ notes: JSON.parse(storedNotes) });
+            this.setState({ notes: JSON.parse(storedNotes) })
         } else {
-            console.log('else'); // ''
-            this.setState({ notes: [] }, () => {
-                localStorage.setItem('notes', JSON.stringify(this.state.notes));
-            })
+            this.setState({ notes: [] })
         }
     }
 
