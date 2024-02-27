@@ -29,11 +29,9 @@ class NoteApp extends React.Component {
 
     componentDidMount() {
         const storedNotes = localStorage.getItem('notes');
-        console.log(storedNotes);
         if (storedNotes !== []) {
             this.setState({ notes: JSON.parse(storedNotes) });
         } else {
-            console.log('get Initial Data');
             this.setState({ notes: [] })
         }
     }
@@ -78,16 +76,15 @@ class NoteApp extends React.Component {
                 search: event.target.value
             }
         })
-        this.props.searchNotes(this.state)
     }
 
     render() {
         const noteSearched = this.state.notes.filter((note) => note.title.toLowerCase().includes(this.state.search.toLowerCase()));
 
-        const activeNotes = noteSearched.filter((note) => {
+        const activeNotes = noteSearched?.filter((note) => {
             return note.archived === false;
         });
-        const archivedNotes = noteSearched.filter((note) => {
+        const archivedNotes = noteSearched?.filter((note) => {
             return note.archived === true;
         })
 
