@@ -75,7 +75,8 @@ class NoteApp extends React.Component {
     }
 
     render() {
-        const noteSearched = this.state.notes ? this.state.notes.filter((note) => note.title.toLowerCase().includes(this.state.search.toLowerCase())) : null;
+        console.log('Render', this.state.notes);
+        const noteSearched = this.state.notes !== null ? this.state.notes.filter((note) => note.title.toLowerCase().includes(this.state.search.toLowerCase())) : null;
         console.log('note searched', noteSearched);
 
         const activeNotes = noteSearched ? noteSearched?.filter((note) => {
