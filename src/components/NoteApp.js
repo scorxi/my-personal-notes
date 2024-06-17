@@ -19,9 +19,8 @@ class NoteApp extends React.Component {
     }
 
     componentDidMount() {
-        const STORAGE_KEY = 'notes';
+        const STORAGE_KEY = 'notes' + new Date().toISOString();
         const storedNotes = localStorage.getItem(STORAGE_KEY);
-        console.log('storedNotes', storedNotes)
         if (storedNotes) {
             this.setState({ notes: JSON.parse(storedNotes) })
         } else {
@@ -72,9 +71,7 @@ class NoteApp extends React.Component {
     }
 
     render() {
-        console.log('Render', this.state.notes); // 'Array(0)' after moount component => 'null'
         const noteSearched = this.state.notes ? this.state.notes.filter((note) => note.title.toLowerCase().includes(this.state.search.toLowerCase())) : null;
-        console.log('note searched', noteSearched); // 'Array(0)' after moount component => 'null' 
 
         const activeNotes = noteSearched ? noteSearched?.filter((note) => {
             return note.archived === false;
